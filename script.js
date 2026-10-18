@@ -9,9 +9,9 @@ function divide(a,b) {
     }
 }
 
-let num1;
-let num2;
-let operator;
+let num1 = '';
+let num2 = '';
+let operator = '';
 
 function operate(num1, operator, num2) {
     switch (operator) {
@@ -25,3 +25,19 @@ function operate(num1, operator, num2) {
             return divide(num1, num2);
     } 
 }
+
+let display = document.querySelector('.display');
+const number_buttons = document.querySelectorAll('.number');
+number_buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (operator === '') {
+            num1 = num1 + `${button.textContent}`;
+            console.log(`num1 changed to ${num1}`);
+            display.textContent = num1;
+        } else {
+            num2 = num2 + `${button.textContent}`;
+            console.log(`num2 changed to ${num2}`);
+            display.textContent = num2;
+        }
+    })
+})
