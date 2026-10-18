@@ -2,14 +2,12 @@ function add(a,b) {return a + b;}
 function subtract(a,b) {return a - b;}
 function multiply(a,b) {return a * b;}
 function divide(a,b) {
-    if (b == 0) {
+    if (b === 0) {
         return "ERROR";
     } else {
         return a/b;
     }
 }
-
-console.log(divide(1,2));
 
 let num1 = '';
 let num2 = '';
@@ -25,6 +23,9 @@ function operate(num1, operator, num2) {
             result = multiply(num1, num2);
         case '/':
             result = divide(num1, num2);
+        if (result === 'ERROR') {
+            return result
+        }
         result = Math.round(result * 1e6) / 1e6;
         return result;
     } 
@@ -74,12 +75,13 @@ const equal = document.querySelector('.equal');
 equal.addEventListener('click', () => {
     if (operator !== '' && num2 !== '') {
         num1 = operate(+num1, operator, +num2);
+        console.log(`result calculated to be ${num1}`);
         operator = '';
         num2 = '';
         display.textContent = num1;
         console.log('operation done, operator and num2 reset');
         console.log(`operator becomes \'${operator}\'`);
         console.log(`num2 becomes \'${num2}\'`);
-    }
+    } 
 })
 
