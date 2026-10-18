@@ -48,3 +48,12 @@ operator_buttons.forEach((button) => {
         console.log(`operator changed to ${operator}`);
     })
 })
+const ac = document.querySelector('#AC');
+ac.addEventListener('click', () => {
+    num1 = '';
+    num2 = '';
+    operator = '';
+    console.log('num1, num2, operator are reset. ');
+    display.textContent = '0';
+    console.log('display reset');
+})
