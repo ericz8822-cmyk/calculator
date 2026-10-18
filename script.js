@@ -50,16 +50,18 @@ const operator_buttons = document.querySelectorAll('.operator');
 operator_buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operator !== '' && num2 !== '') {
-        num1 = operate(+num1, operator, +num2);
-        operator = '';
-        num2 = '';
-        display.textContent = num1;
-        console.log('operation done, operator and num2 reset');
-        console.log(`operator becomes \'${operator}\'`);
-        console.log(`num2 becomes \'${num2}\'`);
+            num1 = operate(+num1, operator, +num2);
+            operator = '';
+            num2 = '';
+            display.textContent = num1;
+            console.log('operation done, operator and num2 reset');
+            console.log(`operator becomes \'${operator}\'`);
+            console.log(`num2 becomes \'${num2}\'`);
         }
-        operator = button.id;
+        if (num1 !== '') {
+            operator = button.id;
         console.log(`operator changed to ${operator}`);
+        } 
     })
 })
 const ac = document.querySelector('#AC');
@@ -74,7 +76,7 @@ ac.addEventListener('click', () => {
 const equal = document.querySelector('.equal');
 equal.addEventListener('click', () => {
     if (operator !== '' && num2 !== '') {
-        num1 = operate(+num1, operator, +num2);
+        num1 = String(operate(+num1, operator, +num2));
         console.log(`result calculated to be ${num1}`);
         operator = '';
         num2 = '';
