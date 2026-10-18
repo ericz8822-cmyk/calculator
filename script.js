@@ -41,3 +41,10 @@ number_buttons.forEach((button) => {
         }
     })
 })
+const operator_buttons = document.querySelectorAll('.operator');
+operator_buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        operator = button.id;
+        console.log(`operator changed to ${operator}`);
+    })
+})
