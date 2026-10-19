@@ -65,8 +65,31 @@ number_buttons.forEach((button) => {
             afterOperation = false;
             console.log(`afterOperation becomes ${afterOperation}`);
         }
-        
     })
+})
+const deci_point = document.querySelector('.point');
+deci_point.addEventListener('click', () => {
+    if (!afterOperation) {
+        if (operator === '') {
+            if (!num1.includes('.')) {
+                num1 = num1 + '.';
+                console.log(`num1 changed to ${num1}`);
+                display.textContent = num1;
+            }
+        } else {
+            if (!num2.includes('.')) {
+                num2 = num2 + '.';
+                console.log(`num2 changed to ${num2}`);
+                display.textContent = num2;
+            }
+        }
+    } else {
+        num1 = '.';
+        console.log(`num1 changed to ${num1}`);
+        display.textContent = num1;
+        afterOperation = false;
+        console.log(`afterOperation becomes ${afterOperation}`);
+    }
 })
 const operator_buttons = document.querySelectorAll('.operator');
 operator_buttons.forEach((button) => {
