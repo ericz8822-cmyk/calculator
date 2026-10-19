@@ -91,6 +91,32 @@ deci_point.addEventListener('click', () => {
         console.log(`afterOperation becomes ${afterOperation}`);
     }
 })
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', () => {
+    if (!afterOperation) {
+        if (operator === '') {
+            if (num1.length > 1) {
+                num1 = num1.slice(0, -1);
+                console.log(`num1 changed to ${num1}`);
+                display.textContent = num1;
+            } else {
+                num1 = '';
+                console.log(`num1 changed to ${num1}`);
+                display.textContent = '0';
+            }
+        } else {
+            if (num2.length > 1) {
+                num2 = num2.slice(0, -1);
+                console.log(`num2 changed to ${num2}`);
+                display.textContent = num2;
+            } else {
+                num2 = '';
+                console.log(`num2 changed to ${num2}`);
+                display.textContent = num1;
+            }
+        }
+    } 
+})
 const operator_buttons = document.querySelectorAll('.operator');
 operator_buttons.forEach((button) => {
     button.addEventListener('click', () => {
