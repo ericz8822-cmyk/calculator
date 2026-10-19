@@ -12,22 +12,35 @@ function divide(a,b) {
 let num1 = '';
 let num2 = '';
 let operator = '';
+let afterOperation = false;
 
 function operate(num1, operator, num2) {
     switch (operator) {
         case '+':
+            console.log(typeof num1);
+            console.log(typeof num2);
             result = add(num1, num2);
+            console.log('addition done');
+            result = Math.round(result * 1e6) / 1e6;
+            return result;
         case '-':
             result = subtract(num1, num2);
+            console.log('subtraction done');
+            result = Math.round(result * 1e6) / 1e6;
+            return result;
         case '*': 
             result = multiply(num1, num2);
+            console.log('multiplication done');
+            result = Math.round(result * 1e6) / 1e6;
+            return result;
         case '/':
             result = divide(num1, num2);
-        if (result === 'ERROR') {
-            return result
-        }
-        result = Math.round(result * 1e6) / 1e6;
-        return result;
+            console.log('division done');
+            if (result === 'ERROR') {
+                return result
+            }
+            result = Math.round(result * 1e6) / 1e6;
+            return result;
     } 
 }
 
@@ -35,15 +48,24 @@ let display = document.querySelector('.display');
 const number_buttons = document.querySelectorAll('.number');
 number_buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (operator === '') {
-            num1 = num1 + `${button.textContent}`;
-            console.log(`num1 changed to ${num1}`);
-            display.textContent = num1;
+        if (!afterOperation) {
+            if (operator === '') {
+                num1 = num1 + `${button.textContent}`;
+                console.log(`num1 changed to ${num1}`);
+                display.textContent = num1;
+            } else {
+                num2 = num2 + `${button.textContent}`;
+                console.log(`num2 changed to ${num2}`);
+                display.textContent = num2;
+            }
         } else {
-            num2 = num2 + `${button.textContent}`;
-            console.log(`num2 changed to ${num2}`);
-            display.textContent = num2;
+            num1 = `${button.textContent}`;
+            console.log(`num1 changed to 4{num1}`);
+            display.textContent = num1;
+            afterOperation = false;
+            console.log(`afterOperation becomes ${afterOperation}`);
         }
+        
     })
 })
 const operator_buttons = document.querySelectorAll('.operator');
@@ -57,10 +79,12 @@ operator_buttons.forEach((button) => {
             console.log('operation done, operator and num2 reset');
             console.log(`operator becomes \'${operator}\'`);
             console.log(`num2 becomes \'${num2}\'`);
+            afterOperation = true;
+            console.log(`afterOperation becomes ${afterOperation}`);
         }
         if (num1 !== '') {
             operator = button.id;
-        console.log(`operator changed to ${operator}`);
+            console.log(`operator changed to ${operator}`);
         } 
     })
 })
@@ -72,6 +96,8 @@ ac.addEventListener('click', () => {
     console.log('num1, num2, operator are reset. ');
     display.textContent = '0';
     console.log('display reset');
+    afterOperation = false;
+    console.log(`afterOperation becomes ${afterOperation}`);
 })
 const equal = document.querySelector('.equal');
 equal.addEventListener('click', () => {
@@ -84,6 +110,8 @@ equal.addEventListener('click', () => {
         console.log('operation done, operator and num2 reset');
         console.log(`operator becomes \'${operator}\'`);
         console.log(`num2 becomes \'${num2}\'`);
+        afterOperation = true;
+        console.log(`afterOperation becomes ${afterOperation}`);
     } 
 })
 
