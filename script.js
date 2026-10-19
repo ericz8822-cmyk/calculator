@@ -85,6 +85,8 @@ operator_buttons.forEach((button) => {
         if (num1 !== '') {
             operator = button.id;
             console.log(`operator changed to ${operator}`);
+            afterOperation = false;
+            console.log(`afterOperation becomes ${afterOperation}`);
         } 
     })
 })
